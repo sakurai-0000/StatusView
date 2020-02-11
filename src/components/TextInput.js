@@ -15,7 +15,6 @@ class TextInput extends Component {
     }
     this.setRedStatus = this.setRedStatus.bind(this);
     this.setBlueStatus = this.setBlueStatus.bind(this);
-    this.setPointData = this.setPointData.bind(this);
   }
 
   componentWillMount(){
@@ -27,7 +26,7 @@ class TextInput extends Component {
     //Ajax calls here
       this.setState({
         chartData:{
-          labels:['Boston', 'Worcester', 'Springfield', 'Lowell', 'Cambridge', 'New Bedford'],
+          labels:['Manegement', 'Communication', 'Technique', 'Intelligence', 'Development', 'Humor'],
           datasets:[
             {
               label:'current status',
@@ -67,7 +66,7 @@ class TextInput extends Component {
           labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
           datasets: [
             {
-              label: 'My First dataset',
+              label: 'Monthly trends',
               fill: false,
               lineTension: 0.1,
               backgroundColor: 'rgba(75,192,192,0.4)',
@@ -103,7 +102,10 @@ class TextInput extends Component {
     this.setState({
       redStatus: redStatus_copy
     });
-      console.log(this.state.redStatus);
+
+    this.setState({
+      pointData:{datasets:[{data:redStatus_copy}]}
+    });
   }
 
   setBlueStatus(){
@@ -120,42 +122,34 @@ class TextInput extends Component {
       console.log(this.state.blueStatus);
   }
 
-  setPointData(){
-    const pointData_copy = this.state.redStatus.slice();
-    this.setState({
-      pointData:{datasets:[{data:pointData_copy}]}
-    });
-  }
-
   //同一コンポーネント内でDOM操作を行いたい時にはRef属性を使う
   //非推奨（場合によりけり）
   render(){
     return(
       <div>
         <div>
-          <p>Current</p>
-          <input type='text' ref={'red1'}/>
-          <input type='text' ref={'red2'}/>
-          <input type='text' ref={'red3'}/>
-          <input type='text' ref={'red4'}/>
-          <input type='text' ref={'red5'}/>
-          <input type='text' ref={'red6'}/>
+          <p>Current_Test</p>
+          <input type='number' min="0" ref={'red1'}/>
+          <input type='number' min="0" ref={'red2'}/>
+          <input type='number' min="0" ref={'red3'}/>
+          <input type='number' min="0" ref={'red4'}/>
+          <input type='number' min="0" ref={'red5'}/>
+          <input type='number' min="0" ref={'red6'}/>
           <button onClick={() => this.setRedStatus()}>Red Input</button>
         </div>
         <div>
           <p>Required</p>
-          <input type='text' ref={'blue1'}/>
-          <input type='text' ref={'blue2'}/>
-          <input type='text' ref={'blue3'}/>
-          <input type='text' ref={'blue4'}/>
-          <input type='text' ref={'blue5'}/>
-          <input type='text' ref={'blue6'}/>
+          <input type='number' min="0" ref={'blue1'}/>
+          <input type='number' min="0" ref={'blue2'}/>
+          <input type='number' min="0" ref={'blue3'}/>
+          <input type='number' min="0" ref={'blue4'}/>
+          <input type='number' min="0" ref={'blue5'}/>
+          <input type='number' min="0" ref={'blue6'}/>
           <button onClick={() => this.setBlueStatus()}>Blue Input</button>
         </div>
         <Rader chartData={this.state.chartData} redStatus={this.state.redStatus} blueStatus={this.state.blueStatus}
-        location="masaMasa" legendPosition="bottom"/>
+        legendPosition="bottom"/>
         <Point pointData={this.state.pointData} />
-        <button onClick={this.setPointData}>update</button>
       </div>
     )
   }

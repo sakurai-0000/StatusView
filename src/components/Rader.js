@@ -16,7 +16,8 @@ class Rader extends Component{
     displayTitle:true,
     displayLegend:true,
     legendPosition:'right',
-    location:'City'
+    location:'City',
+    labels:['Manegement', 'Communication', 'Technique', 'Intelligence', 'Development', 'Humor']
   }
 
   updateChartData(){
@@ -24,11 +25,11 @@ class Rader extends Component{
         chartData:{
           datasets:[
             {
-              label:'current status',
+              label:'current Status',
               data:this.props.redStatus
             },
             {
-              label:'required status',
+              label:'Required Status',
               data:this.props.blueStatus
             }
           ]
@@ -44,8 +45,8 @@ class Rader extends Component{
           options={{
             title:{
               display:this.props.displayTitle,
-              text:'Largest Cities In ' + this.props.location,
-              fontsize:25
+              text:'Currenr and Required Status Rader',
+              fontsize:100
             },
             legend:{
               display:this.props.displayLegend,
