@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Radar } from 'react-chartjs-2';
+import {Button} from '@material-ui/core';
 
 class Rader extends Component{
   constructor(props){
@@ -15,8 +16,8 @@ class Rader extends Component{
   static defaultProps = {
     displayTitle:true,
     displayLegend:true,
-    legendPosition:'right',
-    location:'City',
+    // legendPosition:'right',
+    // location:'City',
     labels:['Manegement', 'Communication', 'Technique', 'Intelligence', 'Development', 'Humor']
   }
 
@@ -25,12 +26,30 @@ class Rader extends Component{
         chartData:{
           datasets:[
             {
-              label:'current Status',
-              data:this.props.redStatus
+              label:'Current Status',
+              data:this.props.redStatus,
+              backgroundColor:[
+                'rgba(255,99,132,0.6)',
+                'rgba(255,99,132,0.6)',
+                'rgba(255,99,132,0.6)',
+                'rgba(255,99,132,0.6)',
+                'rgba(255,99,132,0.6)',
+                'rgba(255,99,132,0.6)',
+                'rgba(255,99,132,0.6)',
+              ]
             },
             {
               label:'Required Status',
-              data:this.props.blueStatus
+              data:this.props.blueStatus,
+              backgroundColor:[
+                'rgba(54,162,235,0.6)',
+                'rgba(54,162,235,0.6)',
+                'rgba(54,162,235,0.6)',
+                'rgba(54,162,235,0.6)',
+                'rgba(54,162,235,0.6)',
+                'rgba(54,162,235,0.6)',
+                'rgba(54,162,235,0.6)',
+              ]
             }
           ]
         }
@@ -55,9 +74,11 @@ class Rader extends Component{
           }}
           //maintainAspectRatio: サイズ変更の際に、元のキャンパスのアスペクト比を維持する
         />
-        <button onClick={this.updateChartData}>
+      <Button
+          variant="contained" color="inherit"
+          onClick={this.updateChartData}>
           update
-        </button>
+        </Button>
     </div>
     )
   }
